@@ -17,18 +17,22 @@ Welcome to the **Java Main Console Project** — a fully modular console-based a
 ## 📁 Project Structure
 
 
+### 📁 Project Structure
+
+```text
 Java Main Console Project/
-├── lib/                            # External libraries (MySQL Connector)
+├── lib/                  # External libraries (MySQL Connector)
 ├── MainSrc/
-│   ├── Controller/                 # Controllers: Handle user actions
-│   ├── Dao/                        # Data access objects for DB communication
-│   ├── Model/                      # Data models
-│   ├── View/                       # User interface/console views
-│   ├── Main.java                   # Project entry point
-│   └── Main.class                  # Compiled output
-├── resources/                      # XML files and configs
-├── pom.xml                         # Project object model (for Maven, optional)
-└── README.md                       # Project documentation
+│   ├── Controller/       # Controllers: Handle user actions
+│   ├── Dao/              # Data access objects for DB communication
+│   ├── Model/            # Data models
+│   ├── View/             # User interface/console views
+│   ├── Main.java         # Project entry point
+│   └── Main.class        # Compiled output
+├── resources/            # XML files and configs
+├── pom.xml               # Project object model (for Maven, optional)
+└── README.md             # Project documentation
+```
 
 ---
 
