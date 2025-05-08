@@ -1,0 +1,21 @@
+Newely add one more entity called Admin
+Admin has all 10 fields.
+
+If customer means 
+1.Register
+2.Update
+3.View Cars
+4.Rental
+5.Exit
+
+Is Admin Login (Yes/No): Yes
+Enter Password Correctly
+Admin Password AdminThe01
+Then display all 10 fields.
+
+No means: Welcome to Our RS Car Rental 
+Display 5 options
+
+If rental day 2 . The customer rent the car 2025-02-25 6PM. He must Give the car at 27-02-2025 Else add fine of 500 per 1hr.
+If the car not given within 24 hrs Place a case file
+

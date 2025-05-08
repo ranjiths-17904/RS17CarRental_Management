@@ -1,0 +1,39 @@
+import java.io.File;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.*;
+
+public class XMLReader {
+
+    public static void main(String[] args) {
+        try {
+            // Get the file path of the XML file from the resources folder
+            File xmlFile = new File("resources/config.xml");
+
+            // Create a DocumentBuilder
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+
+            // Parse the XML file
+            Document doc = builder.parse(xmlFile);
+
+            // Normalize the XML structure
+            doc.getDocumentElement().normalize();
+
+            // Example: Read a specific tag from the XML
+            NodeList nodeList = doc.getElementsByTagName("yourTagName");
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
+
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) node;
+                    String data = element.getElementsByTagName("yourTagName").item(0).getTextContent();
+                    System.out.println("Data: " + data);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
