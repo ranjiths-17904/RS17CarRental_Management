@@ -16,7 +16,7 @@ Welcome to the **Java Main Console Project** — a fully modular console-based a
 
 ## 📁 Project Structure
 
-```
+
 Java Main Console Project/
 ├── lib/                            # External libraries (MySQL Connector)
 ├── MainSrc/
@@ -29,7 +29,6 @@ Java Main Console Project/
 ├── resources/                      # XML files and configs
 ├── pom.xml                         # Project object model (for Maven, optional)
 └── README.md                       # Project documentation
-```
 
 ---
 
@@ -48,15 +47,14 @@ Java Main Console Project/
 
 In your VS Code terminal:
 
-```bash
-javac MainSrc/**/*.java
-```
+
+        >>> javac MainSrc/**/*.java
+
 
 If only compiling the main file:
 
-```bash
-javac MainSrc/Main.java
-```
+        >>> javac MainSrc/Main.java
+
 
 ---
 
@@ -64,9 +62,9 @@ javac MainSrc/Main.java
 
 Use the following command to run your project with the MySQL JDBC driver:
 
-```bash
-java -cp "MainSrc;lib/mysql-connector-java-x.x.xx.jar" Main
-```
+
+        >>> java -cp "MainSrc;lib/mysql-connector-java-x.x.xx.jar" Main
+
 
 > ⚠️ Make sure to replace `x.x.xx` with the actual version of the connector `.jar` file.
 
@@ -78,15 +76,15 @@ All XML configuration or data files should be placed in the `resources/` folder.
 
 **Example Path:**
 
-```
+
 resources/config.xml
-```
 
-In Java, load it like:
 
-```java
+       >>>In Java, load it like:
+
+
 File file = new File("resources/config.xml");
-```
+
 
 ---
 
@@ -121,14 +119,14 @@ File file = new File("resources/config.xml");
 
 ## ✨ Example Output
 
-```
+
 ===== Welcome to Project Console =====
 1. Add Record
 2. View Record
 3. Update Record
 4. Exit
 Enter your choice:
-```
+
 
 ---
 
