@@ -80,10 +80,10 @@ All XML configuration or data files should be placed in the `resources/` folder.
 resources/config.xml
 
 
-       >>>In Java, load it like:
+In Java, load it like:
 
 
-File file = new File("resources/config.xml");
+        File file = new File("resources/config.xml");
 
 
 ---
