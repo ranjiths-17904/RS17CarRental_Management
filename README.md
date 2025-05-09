@@ -62,7 +62,7 @@ If only compiling the main file:
 
 ---
 
-### Query for Database and Table Creation:
+### 🔰 Query for Database and Table Creation:
 
 ```
 CREATE DATABASE car_rental;
