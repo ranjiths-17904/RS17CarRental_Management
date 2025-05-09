@@ -32,7 +32,7 @@ public class CarController {
             stmt.setDouble(4, price);
             stmt.executeUpdate();
 
-            System.out.println("Car added successfully to database!");
+            System.out.println("! Car added successfully to database !");
         } catch (SQLException e) {
             e.printStackTrace();
         }

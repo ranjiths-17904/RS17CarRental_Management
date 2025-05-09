@@ -69,7 +69,7 @@ public class RentalController {
         System.out.println("Car rented successfully!");
 
          System.out.println("========================================================");
-    System.out.println("|               RS17 CAR RENTAL MANAGEMENT              |");
+    System.out.println("|               RS17 CAR RENTAL MANAGEMENT             |");
     System.out.println("========================================================");
     System.out.printf("| %-20s : %-30s |\n", "Date", rental.getRentalDate());
     System.out.printf("| %-20s : %-30s |\n", "Customer ID", customerId);
@@ -96,6 +96,7 @@ public class RentalController {
             System.out.println("Rental ID      : " + rental.getRentalId());
             System.out.println("Car ID         : " + rental.getCarId());
             System.out.println("Customer ID    : " + rental.getCustomerId());
+            // System.out.println("Customer Name    : " + rental.getCustomerId());
             System.out.println("Rental Days    : " + rental.getRentalDays());
             System.out.printf("Total Amount   : Rs.%.2f%n", rental.getTotalAmount());
             System.out.println("Rental Date    : " + rental.getRentalDate());
