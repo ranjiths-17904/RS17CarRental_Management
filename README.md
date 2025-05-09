@@ -62,6 +62,62 @@ If only compiling the main file:
 
 ---
 
+### Query for Database and Table Creation:
+
+```
+CREATE DATABASE car_rental;
+
+USE car_rental;
+
+CREATE TABLE cars (
+    id INT PRIMARY KEY,
+    model VARCHAR(100),
+    color VARCHAR(100),
+    price_per_day DECIMAL(10, 2), -- ✅ added price per day
+    available BOOLEAN DEFAULT true
+);
+
+-- Table for storing customer information
+CREATE TABLE customers (
+    customer_id VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(100),
+    contact VARCHAR(15)
+);
+
+-- Table for tracking rental bookings
+CREATE TABLE rentals (
+    rental_id VARCHAR(20) PRIMARY KEY,
+    car_id INT,
+    customer_id VARCHAR(20),
+    rental_days INT,
+    total_amount DECIMAL(10, 2),
+    rental_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (car_id) REFERENCES cars(id),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+-- Table for tracking payment transactions
+CREATE TABLE payments (
+    payment_id VARCHAR(20) PRIMARY KEY,
+    rental_id VARCHAR(20),
+    amount DECIMAL(10, 2),
+    method VARCHAR(50),
+    FOREIGN KEY (rental_id) REFERENCES rentals(rental_id)
+);
+
+-- Table for recording car returns
+CREATE TABLE returns (
+    return_id SERIAL PRIMARY KEY,
+    rental_id VARCHAR(20),
+    return_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    late_fee DECIMAL(10, 2),
+    FOREIGN KEY (rental_id) REFERENCES rentals(rental_id)
+);
+
+```
+
+---
+
 ### ▶️ Run the Project
 
 Use the following command to run your project with the MySQL JDBC driver:
