@@ -19,3 +19,107 @@ Display 5 options
 If rental day 2 . The customer rent the car 2025-02-25 6PM. He must Give the car at 27-02-2025 Else add fine of 500 per 1hr.
 If the car not given within 24 hrs Place a case file
 
+ USE car_rental;
+Database changed
+mysql> -- Inserting data into cars table
+mysql> INSERT INTO cars (id, model, color, price_per_day, available)
+    -> VALUES
+    -> ('C001', 'Toyota Corolla', 'Red', 7500.00, true),
+    -> ('C002', 'Audi X8', 'Blue', 16000.00, true),
+    -> ('C003', 'Benz', 'Black', 10000.00, true);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> -- Inserting data into customers table
+mysql> INSERT INTO customers (customer_id, name, contact)
+    -> VALUES
+    -> ('USER001', 'Ranjith S', '7395860222'),
+    -> ('USER002', 'Madhan G', '8876549012'),
+    -> ('USER003', 'Rahul Nishanth', '9871234560'),
+    -> ('USER004', 'Naveen', '9496783212');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> -- Inserting data into rentals table
+mysql> INSERT INTO rentals (rental_id, car_id, customer_id, rental_days, total_amount)
+    -> VALUES
+    -> ('RENTAL001', 'C001', 'USER001', 5, 37500.00),
+    -> ('RENTAL002', 'C002', 'USER002', 3, 48000.00),
+    -> ('RENTAL003', 'C003', 'USER003', 7, 70000.00),
+    -> ('RENTAL004', 'C001', 'USER004', 2, 15000.00);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> -- Inserting data into payments table
+mysql> INSERT INTO payments (payment_id, rental_id, amount, method)
+    -> VALUES
+    -> ('PAY001', 'RENTAL001', 37500.00, 'Credit Card'),
+    -> ('PAY002', 'RENTAL002', 48000.00, 'Debit Card'),
+    -> ('PAY003', 'RENTAL003', 70000.00, 'Cash'),
+    -> ('PAY004', 'RENTAL004', 15000.00, 'Online Payment');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> -- Inserting data into returns table
+mysql> INSERT INTO returns (rental_id, return_date, late_fee)
+    -> VALUES
+    -> ('RENTAL001', '2025-05-07 10:00:00', 500.00),
+    -> ('RENTAL002', '2025-05-06 12:00:00', 0.00),
+    -> ('RENTAL003', '2025-05-10 08:00:00', 1000.00),
+    -> ('RENTAL004', '2025-05-04 14:00:00', 0.00);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+
+-- Table for storing available cars
+
+QUERY
+
+CREATE TABLE cars (
+    id INT PRIMARY KEY,
+    model VARCHAR(100),
+    brand VARCHAR(100),
+    price_per_day DECIMAL(10, 2), -- ✅ added price per day
+    available BOOLEAN DEFAULT true
+);
+
+-- Table for storing customer information
+CREATE TABLE customers (
+    customer_id VARCHAR(20) PRIMARY KEY,
+    name VARCHAR(100),
+    contact VARCHAR(15)
+);
+
+-- Table for tracking rental bookings
+CREATE TABLE rentals (
+    rental_id VARCHAR(20) PRIMARY KEY,
+    car_id INT,
+    customer_id VARCHAR(20),
+    rental_days INT,
+    total_amount DECIMAL(10, 2),
+    rental_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (car_id) REFERENCES cars(id),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+-- Table for tracking payment transactions
+CREATE TABLE payments (
+    payment_id VARCHAR(20) PRIMARY KEY,
+    rental_id VARCHAR(20),
+    amount DECIMAL(10, 2),
+    method VARCHAR(50),
+    FOREIGN KEY (rental_id) REFERENCES rentals(rental_id)
+);
+
+-- Table for recording car returns
+CREATE TABLE returns (
+    return_id SERIAL PRIMARY KEY,
+    rental_id VARCHAR(20),
+    return_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    late_fee DECIMAL(10, 2),
+    FOREIGN KEY (rental_id) REFERENCES rentals(rental_id)
+);
