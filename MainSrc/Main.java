@@ -15,7 +15,7 @@ public class Main {
         System.out.println();
         System.out.print("Is Admin Login (Yes/No): ");
         String check = scanner.next();
-        if (check.equalsIgnoreCase("Yes") || check.equalsIgnoreCase("YES") || check.equalsIgnoreCase("yes")) {
+        if (check.equalsIgnoreCase("Yes")) {
             flag = true;
         } else {
             flag = false;

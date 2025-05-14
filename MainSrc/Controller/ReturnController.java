@@ -28,7 +28,6 @@ public class ReturnController {
 
         System.out.println("Car found! Proceeding with return...");
 
-        // Assuming the expected return time is rental date + rental days
         LocalDateTime expectedReturnTime = rental.getRentalDate().plusDays(rental.getRentalDays());
         LocalDateTime actualReturnTime = LocalDateTime.now();
 
@@ -39,26 +38,43 @@ public class ReturnController {
         double lateFee = 0;
 
         if (hoursLate > 0) {
-            lateFee = hoursLate * 500; // Rs.500 per hour late fee
+            lateFee = hoursLate * 500;
             System.out.println("Car returned late by " + hoursLate + " hour(s). Late fee applied: Rs." + lateFee);
         } else {
             System.out.println("Car returned on time. No late fee!");
         }
 
-        double finalAmount = rental.getTotalAmount() + lateFee;
+        // Ask user about damages
+        System.out.print("Enter number of damages (enter 0 if no damages): ");
+        int damages = scanner.nextInt();
+        double damageFee = damages * 700;
 
-        System.out.println("\nFinal Bill:");
+        // Early return discount
+        long actualDaysUsed = Duration.between(rental.getRentalDate(), actualReturnTime).toDays();
+        double baseAmount = rental.getTotalAmount();
+
+        double discount = 0;
+        if (damages == 0 && actualDaysUsed <= (rental.getRentalDays() / 2)) {
+            discount = baseAmount * 0.30; // 30% discount
+            System.out.println("Early return detected with no damages. 30% discount applied: Rs." + discount);
+        }
+
+        double finalAmount = baseAmount + lateFee + damageFee - discount;
+
+        System.out.println("\nFINAL BILL:");
         System.out.println("===========================================================");
         System.out.println("|               RS17 CAR RENTAL MANAGEMENT                |");
         System.out.println("===========================================================");
-        System.out.printf("| %-20s : %-30s  |\n", "Rental ID", rental.getRentalId());
-        System.out.printf("| %-20s : %-30s  |\n", "Car ID", rental.getCarId());
-        System.out.printf("| %-20s : %-30s  |\n", "Customer ID", rental.getCustomerId());
-        System.out.printf("| %-20s : %-30d  |\n", "Rental Days", rental.getRentalDays());
-        System.out.printf("| %-20s : Rs.%-28.2f |\n", "Return Date", actualReturnTime);
-        System.out.printf("| %-20s : Rs.%-28.2f |\n", "Base Amount", rental.getTotalAmount());
-        System.out.printf("| %-20s : Rs.%-28.2f |\n", "Late Fee", lateFee);
-        System.out.printf("| %-20s : Rs.%-28.2f |\n", "Total Amount", finalAmount);
+        System.out.printf("| %-20s : %-30s    |\n", "Rental ID", rental.getRentalId());
+        System.out.printf("| %-20s : %-30s    |\n", "Car ID", rental.getCarId());
+        System.out.printf("| %-20s : %-30s    |\n", "Customer ID", rental.getCustomerId());
+        System.out.printf("| %-20s : %-30d    |\n", "Rental Days", rental.getRentalDays());
+        System.out.printf("| %-20s : %-30s    |\n", "Return Date", actualReturnTime);
+        System.out.printf("| %-20s : Rs.%-28.2f  |\n", "Base Amount", baseAmount);
+        System.out.printf("| %-20s : Rs.%-28.2f  |\n", "Late Fee", lateFee);
+        System.out.printf("| %-20s : Rs.%-28.2f  |\n", "Damage Fee", damageFee);
+        System.out.printf("| %-20s : Rs.%-28.2f  |\n", "Discount", discount);
+        System.out.printf("| %-20s : Rs.%-28.2f  |\n", "Total Amount", finalAmount);
         System.out.println("===========================================================");
         System.out.println("|            Thank You for using RS17 Car Rental!         |");
         System.out.println("|                   Please visit again!                   |");
