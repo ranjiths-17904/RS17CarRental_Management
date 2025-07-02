@@ -132,3 +132,5 @@ Admin & Customer ->  Reg Customer is not added in DB
 
 
 java -cp "MainSrc;lib/mysql-connector-java-9.3.0.jar" Main
+
+To Run : java -cp "MainSrc;lib/mysql-connector-j-9.3.0.jar" Main

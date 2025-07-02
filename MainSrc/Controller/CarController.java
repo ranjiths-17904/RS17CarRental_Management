@@ -79,7 +79,7 @@ public class CarController {
             boolean found = false;
             while (rs.next()) {
                 found = true;
-                System.out.printf("Car ID: C%03d | Name: %s     | Color: %s    | Price/Day: Rs.%.2f%n",
+                System.out.printf("Car ID: C%03d | Name: %s | Color: %s | Price/Day: Rs. %.2f%n",
                         rs.getInt("id"),
                         rs.getString("model"),
                         rs.getString("color"),

@@ -40,7 +40,9 @@ public class Main {
                 case 4 -> rentalController.rentCar(scanner, carController.getCars(), customerController.getCustomers());
                 case 5 -> returnController.returnCar(scanner, rentalController.getRentals()); 
                 case 6 -> {
-                    System.out.println("*** Thank you for visiting RS17 Car Rental! ***");
+                    System.out.println();
+                    System.out.println("*** Thank you for visiting RS17 Car Rental!!! ***");
+                    System.out.println();
                     return;
                 }
                 default -> System.out.println("Invalid choice. Please try again.");

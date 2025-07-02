@@ -35,4 +35,9 @@ public class Car {
     public void setPricePerDay(double pricePerDay) {
          this.pricePerDay = pricePerDay; 
     }
+
+    public int getId() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getId'");
+    }
 }
